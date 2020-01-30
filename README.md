@@ -11,7 +11,7 @@ First, instantiate a ScyllaDB container.
     docker start scylla-test
 ~~~
 
-Install CQL shell (require Python 2):
+Next, install CQL shell (require Python 2):
 
 ~~~
     pip install cqlsh
