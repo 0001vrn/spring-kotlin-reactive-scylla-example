@@ -7,11 +7,11 @@ This guide use ScyllaDB implementation of Cassandra.
 First, instantiate a ScyllaDB container.
 
 ~~~
-    docker run --named scylla-test -p 127.0.0.1:9042:9042 -d scylladb/scylla
-    docker start scylla-test
+    cd ./src/test/resources
+    docker-compose up
 ~~~
 
-Next, install CQL shell (require Python 2):
+Next, install CQL shell (require Python 2): (Optional)
 
 ~~~
     pip install cqlsh

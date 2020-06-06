@@ -34,14 +34,14 @@ class ReactivePersonRepositoryTests {
     fun `'insert' should performs a count, inserts data and performs a count again using reactive operator chaining`() {
         val saveAndCount = repository
                 .count()
-                .doOnNext({cnt -> println(cnt)})
+                .doOnNext { cnt -> println(cnt)}
                 .thenMany(repository.saveAll(Flux.just(
                         Person("Hank", "Schrader", 43),
                         Person("Mike", "Ehrmantraut", 62)
                 )))
                 .last()
                 .flatMap { _ -> repository.count() }
-                .doOnNext({cnt -> println(cnt)})
+                .doOnNext { cnt -> println(cnt)}
         StepVerifier.create(saveAndCount).expectNext(6).verifyComplete()
     }
 

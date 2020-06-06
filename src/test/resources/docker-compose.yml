@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  scylla-database:
+    image: scylladb/scylla
+    container_name: scylla-db
+    restart: always
+    ports:
+      - 9042:9042
+  scylla-init:
+    image: python:3.7.3
+    container_name: scylla-db-init
+    depends_on:
+      - scylla-database
+    volumes:
+      - ./scylla-init.cql:/scylla-init.cql:ro
+    command: "bash -c echo init schema && sleep 30 && cqlsh -u cassandra -p cassandra -f scylla-init.cql scylla-db"
